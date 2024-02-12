@@ -43,7 +43,7 @@ public class ReservationService {
     }
 
 
-    //private final ScheduleMapper scheduleMapper;
+    private  ScheduleMapper scheduleMapper;
 
     private static final BigDecimal DEPOSIT_AMOUNT = BigDecimal.TEN;
 
@@ -59,14 +59,14 @@ public class ReservationService {
         reservation.setRefundValue(getRefundValue(reservation));
         reservationMapper.map(reservationRepository.save(reservation));
 
-//        ReservationDTO reservationDTO = new ReservationDTO();
-//        reservationDTO.setId(reservation.getId());
-//        reservationDTO.setSchedule(scheduleMapper.map(schedule));
-//        reservationDTO.setGuestId(createReservationRequestDTO.getGuestId());
-//        reservationDTO.setReservationStatus(reservation.getReservationStatus().toString());
-//        reservationDTO.setRefundValue(DEPOSIT_AMOUNT);
+        ReservationDTO reservationDTO = new ReservationDTO();
+        reservationDTO.setId(reservation.getId());
+        reservationDTO.setSchedule(scheduleMapper.map(schedule));
+        reservationDTO.setGuestId(createReservationRequestDTO.getGuestId());
+        reservationDTO.setReservationStatus(reservation.getReservationStatus().toString());
+        reservationDTO.setRefundValue(DEPOSIT_AMOUNT);
 
-        return reservationMapper.map(reservationRepository.save(reservation));
+        return reservationDTO;
 
     }
     public ReservationDTO findReservation(Long reservationId) {
